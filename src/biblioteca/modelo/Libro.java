@@ -71,30 +71,30 @@ public class Libro {
         return cantidadDisponible;
     }
 
-    //! Verifica si el libro esta disponible
+    //? Verifica si el libro esta disponible
     public boolean estaDisponible() throws LibroNoDisponibleException {
-        return cantidadDisponible > 0;
+        return cantidadDisponible > 0; //? Si hay ejemplares disponibles, devuelve true
     }
 
-    //! Resta el ejemplar del libro prestado a cantidad disponible
+    //? Resta el ejemplar del libro prestado a cantidad disponible
     public boolean prestarEjemplar() throws LibroNoDisponibleException {
         if(estaDisponible()) {
-            cantidadDisponible--;
+            cantidadDisponible--; //? Si hay ejemplares disponibles, resta uno
             return true;
         } else {
             throw new LibroNoDisponibleException();
         }
     }
 
-    //! Suma el ejemplar del libro prestado a cantidad disponible
+    //? Suma el ejemplar del libro prestado a cantidad disponible
     public void devolverEjemplar() {
         if(cantidadDisponible < cantidadTotal) {
-            cantidadDisponible++;
+            cantidadDisponible++; //? Si hay ejemplares disponibles, suma uno
         }
     }
 
-    //! Hace un toString del libro
-    @Override
+    //? Hace un toString del libro
+    @Override //? Sobreescribimos el toString para mostrar la información del libro de forma legible
     public String toString() {
         return "ISBN: " + isbn + " | Titulo: " + titulo + " | Autor: " + autor + " | Disponibles: " + cantidadDisponible + "/" + cantidadTotal;
     }
