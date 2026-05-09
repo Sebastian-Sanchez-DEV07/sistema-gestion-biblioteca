@@ -1,21 +1,25 @@
 package biblioteca;
-import biblioteca.modelo.Libro;
-import biblioteca.excepciones.LibroNoDisponibleException;
+
+import biblioteca.modelo.*;
+import biblioteca.servicios.Biblioteca;
+import biblioteca.vista.Menu;
 
 public class Main {
-    public static void main(String[] args) throws LibroNoDisponibleException {
-        Libro libro = new Libro("978-123", "El Principito", "Saint-Exupéry", "Planeta", 1943, "Ficción", 2);
+    public static void main(String[] args) {
 
-        try {
-            libro.prestarEjemplar();
-            System.out.println("Después de prestar: " + libro);
+        Biblioteca biblioteca = new Biblioteca();
 
-            libro.prestarEjemplar();
-            System.out.println("Después de prestar otro: " + libro);
+        //! Datos de prueba para demostrar el funcionamiento del sistema.
+        biblioteca.agregarLibro(new Libro("978-001", "El Principito", "Saint-Exupéry", "Planeta", 1943, "Ficción", 3));
+        biblioteca.agregarLibro(new Libro("978-002", "Clean Code", "Robert Martin", "Prentice Hall", 2008, "Tecnología", 2));
+        biblioteca.agregarLibro(new Libro("978-003", "Cien años de soledad", "García Márquez", "Sudamericana", 1967, "Novela", 1));
 
-            libro.prestarEjemplar(); // ← aquí salta
-        } catch (LibroNoDisponibleException e) {
-            System.out.println("Error capturado: " + e.getMessage());
-        }
+        biblioteca.registrarUsuario(new Usuario("U001", "Ana", "García", "ana@email.com"));
+        biblioteca.registrarUsuario(new Usuario("U002", "Carlos", "López", "carlos@email.com"));
+
+        //! Arranca el menú.
+        Menu menu = new Menu(biblioteca);
+        menu.mostrarMenuPrincipal();
     }
+
 }

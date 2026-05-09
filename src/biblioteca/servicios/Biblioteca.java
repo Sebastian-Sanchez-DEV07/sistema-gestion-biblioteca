@@ -1,15 +1,15 @@
 package biblioteca.servicios;
 
 //! Como en todas las capas, importamos lo necesario para conectar con las demás partes del sistema
-import biblioteca.excepciones.*; //* Importamos todas las excepciones
-import biblioteca.modelo.*; //* Importamos todos los modelos
+import biblioteca.excepciones.*; //* Importamos todas las excepciones.
+import biblioteca.modelo.*; //* Importamos todos los modelos.
 import java.util.*;
 
 //? Vista  principal — conecta libros, usuarios y préstamos
 public class Biblioteca {
-    private Map<String, Libro> libros;       // ISBN → Libro
-    private Map<String, Usuario> usuarios;   // ID → Usuario
-    private Map<String, Prestamo> prestamos; // ID → Prestamo
+    private Map<String, Libro> libros;       //* ISBN → Libro
+    private Map<String, Usuario> usuarios;   //* ID → Usuario
+    private Map<String, Prestamo> prestamos; //* ID → Prestamo
     private int contadorPrestamos;
 
     public Biblioteca() {
@@ -19,36 +19,36 @@ public class Biblioteca {
         this.contadorPrestamos = 1;
     }
 
-    //? Agrega un libro a la biblioteca
+    //? Agrega un libro a la biblioteca.
     public void agregarLibro(Libro libro) {
         libros.put(libro.getIsbn(), libro);
     }
 
-    //? Busca un libro por ISBN - ISBN es el código unico del libro
+    //? Busca un libro por ISBN - ISBN es el código unico del libro.
     public Libro buscarLibroPorIsbn(String isbn) throws EntidadNoEncontradaException {
         Libro libro = libros.get(isbn);
         if (libro == null) throw new EntidadNoEncontradaException();
         return libro;
     }
 
-    //? Obtiene todos los libros de la biblioteca
+    //? Obtiene todos los libros de la biblioteca.
     public Collection<Libro> obtenerTodosLosLibros() {
         return libros.values();
     }
 
-    //? Registra un nuevo usuario
+    //? Registra un nuevo usuario.
     public void registrarUsuario(Usuario usuario) {
         usuarios.put(usuario.getId(), usuario);
     }
 
-    //? Verifica si un usuario existe por su ID o no
+    //? Verifica si un usuario existe por su ID o no.
     public Usuario buscarUsuario(String id) throws EntidadNoEncontradaException {
         Usuario usuario = usuarios.get(id);
         if (usuario == null) throw new EntidadNoEncontradaException();
         return usuario;
     }
 
-    //? Obtiene todos los usuarios registrados
+    //? Obtiene todos los usuarios registrados.
     public Collection<Usuario> obtenerTodosLosUsuarios() {
         return usuarios.values();
     }
